@@ -1,0 +1,148 @@
+#include <iostream>
+#include <cmath>
+
+class Ariphmetical
+{
+
+private:
+
+	double _d;
+	double _a_0;
+
+public:
+	
+	Ariphmetical(double a_0, double d)
+	{
+		_d = d;
+		_a_0 = a_0;
+	}
+	Ariphmetical()
+	{
+		_d = 1;
+		_a_0 = 0;
+	}
+
+	double getD();
+	void setD(double d);
+	
+	double getA();
+	void setA(double a);
+	
+
+	double getAN(int n)
+	{
+		return _a_0 + (n-1) * _d;
+	}
+	double getSumN(int n)
+	{
+		return (_a_0 + getAN(n)) / 2 * n;
+	}
+
+};
+
+	double Ariphmetical::getD()
+	{
+		return _d;
+	}
+	void Ariphmetical::setD(double d)
+	{
+		_d = d;
+	}
+
+	double Ariphmetical::getA()
+	{
+		return _a_0;
+	}
+	void Ariphmetical::setA(double a)
+	{
+		_a_0 = a;
+	}
+
+class Geometric
+{
+
+private:
+
+	double _q;
+	double _b_0;
+
+public:
+	
+	Geometric(double b_0, double q)
+	{
+		_q = q;
+		_b_0 = b_0;
+	}
+	Geometric()
+	{
+		_q = 1;
+		_b_0 = 0;
+	}
+
+	double getQ();
+	void setQ(double q);
+	
+	double getB();
+	void setB(double b);
+	
+
+	double getBN(int n)
+	{
+	    double q = _q;
+	    for(int i = 2; i < n; i++)
+	    {
+	        q *= _q;
+	    }
+		return _b_0 * q;
+	}
+	
+	double getSumM()
+	{
+		if(abs(_q) >= 1)
+		{
+			std::cout << "Wrong method for the type of progression, use method: getSumN(int) to count sum or redefine q, abs(_q) < 1";
+			return -1;
+		}
+		return _b_0 / (1 - _q);
+	}
+
+	double getSumN(int n)
+	{
+		if(abs(_q) < 1)
+		{
+			std::cout << "Wrong method, the program will return another sum method for abs(_q) < 1 authomaticaly";
+			return getSumM();
+		}
+		double q = _q;
+	    for(int i = 2; i <= n; i++)
+	    {
+	        q *= _q;
+	    }
+		return _b_0 * (q - 1) / (_q - 1);
+	}
+
+};
+
+	double Geometric::getQ()
+	{
+		return _q;
+	}
+	void Geometric::setQ(double q)
+	{
+		_q = q;
+	}
+
+	double Geometric::getB()
+	{
+		return _b_0;
+	}
+	void Geometric::setB(double b)
+	{
+		_b_0 = b;
+	}
+
+
+int main()
+{
+	return  0;
+}
